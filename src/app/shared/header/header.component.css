@@ -1,0 +1,13 @@
+.fa-bars {
+  font-size: 1.5rem;
+  color: #202021;
+}
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fa-gear {
+  font-size: 1.5rem;
+  color: #202021;
+}

@@ -1,0 +1,75 @@
+<div class="navigation" [ngClass]="{ open: isOpen }">
+  <ul>
+    <li>
+      <a href="#">
+        <span class="icon">
+          <i class="fa-solid fa-shop"></i>
+        </span>
+        <span class="title">CPU STORE</span>
+      </a>
+    </li>
+
+    <li [routerLinkActive]="'active'">
+      <a routerLink="/dashboard">
+        <span class="icon">
+          <i class="fa-solid fa-gauge"></i>
+        </span>
+        <span [routerLinkActive]="'active'" class="title">Dashboard</span>
+      </a>
+    </li>
+
+    <li [routerLinkActive]="'active'">
+      <a routerLink="/categorias">
+        <span class="icon">
+          <i class="fa-solid fa-list"></i>
+        </span>
+        <span [routerLinkActive]="'active'" class="title">Categorias</span>
+      </a>
+    </li>
+
+    <li [routerLinkActive]="'active'">
+      <a routerLink="/productos">
+        <span class="icon">
+          <i class="fa-brands fa-product-hunt"></i>
+        </span>
+        <span [routerLinkActive]="'active'" class="title">Productos</span>
+      </a>
+    </li>
+
+    <li [routerLinkActive]="'active'">
+      <a routerLink="/realizarVenta">
+        <span class="icon">
+          <i class="fa-solid fa-cash-register"></i>
+        </span>
+        <span [routerLinkActive]="'active'" class="title">Realizar Venta</span>
+      </a>
+    </li>
+
+    <li [routerLinkActive]="'active'">
+      <a routerLink="/ventas">
+        <span class="icon">
+          <i class="fa-solid fa-money-bill"></i>
+        </span>
+        <span [routerLinkActive]="'active'" class="title">Ventas</span>
+      </a>
+    </li>
+
+    <li [routerLinkActive]="'active'">
+      <a routerLink="/usuarios">
+        <span class="icon">
+          <i class="fa-solid fa-users"></i>
+        </span>
+        <span [routerLinkActive]="'active'" class="title">Usuarios</span>
+      </a>
+    </li>
+
+    <li style="margin-top: 5rem">
+      <a routerLink="/login">
+        <span class="icon">
+          <i class="fa-solid fa-door-open"></i>
+        </span>
+        <span class="title"> Cerrar Sesion</span>
+      </a>
+    </li>
+  </ul>
+</div>

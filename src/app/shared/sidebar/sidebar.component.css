@@ -1,0 +1,41 @@
+.icon {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+i {
+  font-size: 1.5rem;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.fa-shop {
+  color: rgb(252, 160, 0);
+}
+.navigation ul li i {
+  color: rgb(252, 160, 0);
+}
+
+.navigation ul li:hover i {
+  color: rgb(252, 160, 0);
+}
+
+/* Estilos para el sidebar cerrado */
+.navigation {
+  width: 75px;
+
+  transition: width 0.3s ease-in-out;
+}
+
+/* Estilos para el sidebar abierto */
+.navigation.open {
+  width: 300px; /* Ancho deseado para el sidebar abierto */
+}
+
+.active {
+  background-color: white;
+  color: black;
+}
