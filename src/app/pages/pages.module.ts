@@ -28,7 +28,7 @@ import { AppModule } from '../app.module';
     ProductosComponent,
     RealizarVentaComponent,
     UsuariosComponent,
-    VentasComponent,
+    VentasComponent
   ],
   imports: [CommonModule, RouterModule, SharedModule],
 })

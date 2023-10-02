@@ -1,5 +1,13 @@
 .open {
   width: 90%;
-
   margin-left: -14rem;
+}
+.main{
+  width: 100%;
+  display: block;
+  background-color: rgb(235, 230, 230);
+}
+.container{
+  width: 96%;
+  display: flex;
 }
