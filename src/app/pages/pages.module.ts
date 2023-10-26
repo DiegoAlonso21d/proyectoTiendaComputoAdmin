@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { AppModule } from '../app.module';
+import { ChangePasswordComponent } from './changePassword/change-password.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { AppModule } from '../app.module';
     RealizarVentaComponent,
     UsuariosComponent,
     VentasComponent,
+    ChangePasswordComponent,
   ],
   exports: [
     PagesComponent,
@@ -29,7 +32,8 @@ import { AppModule } from '../app.module';
     RealizarVentaComponent,
     UsuariosComponent,
     VentasComponent,
+    ChangePasswordComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule],
+  imports: [CommonModule, RouterModule, SharedModule, ReactiveFormsModule],
 })
 export class PagesModule {}

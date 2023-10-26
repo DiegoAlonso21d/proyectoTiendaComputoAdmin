@@ -7,6 +7,8 @@ import { RealizarVentaComponent } from './realizar-venta/realizar-venta.componen
 import { CategoriasComponent } from './categorias/categorias.component';
 import { ProductosComponent } from './productos/productos.component';
 import { VentasComponent } from './ventas/ventas.component';
+import { RouteGuardService } from '../services/route-guard.service';
+import { ChangePasswordComponent } from './changePassword/change-password.component';
 
 const routes: Routes = [
   {
@@ -20,9 +22,13 @@ const routes: Routes = [
       { path: 'categorias', component: CategoriasComponent },
       { path: 'productos', component: ProductosComponent },
       { path: 'ventas', component: VentasComponent },
-
+      { path: 'changePassword', component: ChangePasswordComponent },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     ],
+    /*     canActivate: [RouteGuardService],
+    data: {
+      expectedRole: ['administrador', 'usuario'],
+    }, */
   },
 
   //{ path: 'path/:routeParam', component: MyComponent },

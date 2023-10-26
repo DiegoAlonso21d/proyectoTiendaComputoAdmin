@@ -1,0 +1,44 @@
+.card {
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
+.card-header h2 {
+  margin-bottom: 0;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-body input {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th,
+.table td {
+  padding: 5px;
+}
+
+.table th {
+  background-color: #f8f9fa;
+}
+
+.btn-primary {
+  color: white;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.float-right {
+  float: right;
+}

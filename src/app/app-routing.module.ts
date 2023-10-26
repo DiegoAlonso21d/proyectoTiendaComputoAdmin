@@ -9,6 +9,9 @@ const routes: Routes = [
   //path : "/auth" AuthRouting
 
   { path: '**', component: NopagefoundComponent },
+
+
+  
 ];
 
 @NgModule({
