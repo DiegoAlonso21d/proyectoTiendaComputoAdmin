@@ -1,1 +1,61 @@
-<p>realizar-venta works!</p>
+<div class="container mt-4" style="padding-left: 70px; padding-top: 50px;">
+  <button class="btn btn-custom" id="openModalBtn">Realizar Venta</button>
+  <br/><br>
+  <div class="table-responsive">
+      <table id="myTable" class="table table-striped table-bordered display nowrap">
+          <thead class="bg-dark text-light">
+              <tr class="text-center">
+                  <th style="text-align: center;">Codigo</th>
+                  <th style="text-align: center;">Total</th>
+                  <th style="text-align: center;">Usuario</th>
+                  <th style="text-align: center;">Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>1001</td>
+              <td>S/400</td>
+              <td>Diego Armando</td>
+              <td>
+                  <button class="editBtn" id="openModalEdit"><i class="fa-solid fa-pencil"></i></button>
+                  <button class="deleteBtn"><i class="fas fa-trash-alt"></i></button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeModalBtn">&times;</span>
+    <h2 class="modal-title">Realizar venta</h2>
+    <form id="categoryForm">
+      <label for="codigo">Código:</label>
+      <input type="text" id="codigo" name="codigo">
+      <label for="total">Total:</label>
+      <input type="text" id="total" name="total">
+      <label for="usuario">Usuario:</label>
+      <input type="text" id="usuario" name="usuario">
+      <button type="button" id="agregarBtn">Agregar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal actualizar -->
+<div id="editModal" class="modal2">
+  <div class="modal-content">
+    <span class="close" id="closeEditModal">&times;</span>
+    <h2 class="modal-title">Editar Venta</h2>
+    <form id="editCategoryForm">
+      <label for="editCodigo">Código:</label>
+      <input type="text" id="editCodigo" name="editCodigo">
+      <label for="totalEdit">Total:</label>
+      <input type="text" id="totalEdit" name="totalEdit">
+      <label for="usuarioEdit">Usuario:</label>
+      <input type="text" id="usuarioEdit" name="usuarioEdit">
+      <button type="button" id="EditModalBtn">Actualizar</button>
+    </form>
+  </div>
+</div>

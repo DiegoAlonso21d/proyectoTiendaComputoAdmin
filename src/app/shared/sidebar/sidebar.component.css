@@ -25,8 +25,7 @@ i {
 
 /* Estilos para el sidebar cerrado */
 .navigation {
-  width: 75px;
-
+  width: 100px;
   transition: width 0.3s ease-in-out;
 }
 

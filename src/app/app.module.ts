@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   hasProgressBar: false,
 };
 
+
 @NgModule({
   declarations: [AppComponent, NopagefoundComponent],
   imports: [
@@ -45,6 +47,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       useClass: TokenInterceptorInterceptor,
       multi: true,
     },
+    RouterModule
   ],
   bootstrap: [AppComponent],
 })
