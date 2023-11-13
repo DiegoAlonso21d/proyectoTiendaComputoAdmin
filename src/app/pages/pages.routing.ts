@@ -7,12 +7,14 @@ import { RealizarVentaComponent } from './realizar-venta/realizar-venta.componen
 import { CategoriasComponent } from './categorias/categorias.component';
 import { ProductosComponent } from './productos/productos.component';
 import { VentasComponent } from './ventas/ventas.component';
+import { AuthGuard } from '../guards/auth.guard';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PagesComponent,
-
+    /*    canActivate: [AuthGuard], */
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'usuarios', component: UsuariosComponent },
@@ -20,8 +22,8 @@ const routes: Routes = [
       { path: 'categorias', component: CategoriasComponent },
       { path: 'productos', component: ProductosComponent },
       { path: 'ventas', component: VentasComponent },
-
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      { path: 'changePassword', component: ChangePasswordComponent },
+      { path: '', redirectTo: '/login', pathMatch: 'full' },
     ],
   },
 

@@ -1,73 +1,187 @@
-<div class="container mt-4" style="padding-left: 70px; padding-top: 50px;">
-  <button class="btn btn-custom" id="openModalBtn">Nuevo Producto</button>
-  <br/><br>
-  <div class="table-responsive">
-      <table id="myTable" class="table table-striped table-bordered display nowrap">
-          <thead class="bg-dark text-light">
-              <tr class="text-center">
-                  <th style="text-align: center;">Codigo</th>
-                  <th style="text-align: center;">Nombre Producto</th>
-                  <th style="text-align: center;">Stock</th>
-                  <th style="text-align: center;">Precio</th>
-                  <th style="text-align: center;">Categoria</th>
-                  <th style="text-align: center;">Acciones</th>
-              </tr>
-          </thead>
-          <tbody>
-          <tr>
-              <td>1001</td>
-              <td>Pantalla LG 22'</td>
-              <td>50</td>
-              <td>S/40</td>
-              <td>Monitores</td>
-              <td>
-                  <button class="editBtn" id="openModalEdit"><i class="fa-solid fa-pencil"></i></button>
-                  <button class="deleteBtn"><i class="fas fa-trash-alt"></i></button>
-              </td>
-          </tr>
-      </tbody>
+<div class="container mt-4" style="padding-left: 70px; padding-top: 50px">
+  <button type="submit" class="btn btn-custom" (click)="openAddModal()">
+    Nuevo Producto
+  </button>
+
+  <br /><br />
+
+  <table id="myTable" class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Image</th>
+        <th>Categoria</th>
+        <th>Stock</th>
+        <th>Precio</th>
+        <th>Estado</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+        <th>Cambiar Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.nombre }}</td>
+        <td>
+          <img class="imagenProducto" src="{{ producto.image }}" alt="" />
+        </td>
+        <td>{{ producto.categoria_nombre }}</td>
+        <td>{{ producto.stock }}</td>
+        <td>S/. {{ producto.precio }}</td>
+        <td>
+          <span
+            style="color: green; font-weight: bold"
+            *ngIf="producto.estado == 'true'"
+            >Activo</span
+          >
+          <span
+            style="color: grey; font-weight: bold"
+            *ngIf="producto.estado == 'false'"
+            >Inactivo</span
+          >
+        </td>
+
+        <td>
+          <button class="editBtn" (click)="openEditModal(producto)">
+            <i class="fa-solid fa-pencil"></i>
+          </button>
+        </td>
+        <td>
+          <button class="deleteBtn" (click)="eliminarProducto(producto)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+        <td>
+          <input
+            type="checkbox"
+            class="custom-checkbox"
+            [checked]="producto.estado === 'true'"
+            (change)="cambiarEstado($event, producto)"
+          />
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
-</div>
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModalBtn">&times;</span>
-    <h2 class="modal-title">Nuevo Producto</h2>
-    <form id="categoryForm">
-      <label for="codigo">Código:</label>
-      <input type="text" id="codigo" name="codigo">
-      <label for="nombre">Nombre del Producto:</label>
-      <input type="text" id="nombre" name="nombre">
-      <label for="stock">Stock:</label>
-      <input type="text" id="stock" name="stock">
-      <label for="nombre">Precio:</label>
-      <input type="text" id="precio" name="nombre">
-      <label for="nombre">Categoría:</label>
-      <input type="text" id="categoria" name="nombre">
-      <button type="button" id="agregarBtn">Agregar</button>
-    </form>
+<div class="container mt-4" style="padding-left: 70px; padding-top: 50px">
+  <!-- Tu tabla aquí -->
+
+  <!-- Modal EDITAR -->
+  <div class="custom-modal" [class.show-modal]="mostrarModal">
+    <div class="modal-content">
+      <h2>Editar Categoría</h2>
+      <form [formGroup]="editForm">
+        <input
+          readonly
+          type="text"
+          class="inputCategoria"
+          style="width: 30%"
+          id="inputCodigo"
+          formControlName="id"
+        />
+        <label for="">Nombre</label>
+        <input type="text" class="inputCategoria" formControlName="nombre" />
+
+        <label for="">Precio</label>
+        <input type="number" class="inputCategoria" formControlName="precio" />
+
+        <label for="">Url de la Imagen</label>
+        <input
+          type="text"
+          class="inputCategoria inputImage"
+          formControlName="image"
+        />
+        <label for="">Categoria</label>
+        <select formControlName="categoria_id" style="height: 2rem; width: 35%">
+          <option value="0" disabled>Seleccione</option>
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.nombre }}
+          </option>
+        </select>
+
+        <label for="">Stock</label>
+        <input type="number" class="inputCategoria" formControlName="stock" />
+
+        <label for="">Descripcion</label>
+        <textarea
+          formControlName="descripcion"
+          name=""
+          class="inputCategoria"
+          id=""
+          cols="50"
+          rows="5"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="btn btn-custom"
+          style="width: 100%"
+          (click)="validateEditProductoa()"
+        >
+          Editar Producto
+        </button>
+
+        <br /><br />
+      </form>
+      <button class="modal-close-button" (click)="closeModal()">Cerrar</button>
+    </div>
   </div>
 </div>
 
-<!-- Modal actualizar -->
-<div id="editModal" class="modal2">
-  <div class="modal-content">
-    <span class="close" id="closeEditModal">&times;</span>
-    <h2 class="modal-title">Editar Categoría</h2>
-    <form id="editCategoryForm">
-      <label for="editCodigo">Código:</label>
-      <input type="text" id="editCodigo" name="editCodigo">
-      <label for="editNombre">Nombre de Producto:</label>
-      <input type="text" id="editNombre" name="editNombre">
-      <label for="stock">Stock:</label>
-      <input type="text" id="stockEdit" name="stock">
-      <label for="nombre">Precio:</label>
-      <input type="text" id="precioEdit" name="nombre">
-      <label for="nombre">Categoría:</label>
-      <input type="text" id="categoriaEdit" name="nombre">
-      <button type="button" id="EditModalBtn">Actualizar</button>
-    </form>
+<div class="container mt-4" style="padding-left: 70px; padding-top: 50px">
+  <!-- Tu tabla aquí -->
+
+  <!-- Modal ADD-->
+  <div class="custom-modal" [class.show-modal]="mostrarModalAdd">
+    <div class="modal-content">
+      <h2>Agregar Producto</h2>
+      <form [formGroup]="productoForm">
+        <label for="">Nombre</label>
+        <input type="text" class="inputCategoria" formControlName="nombre" />
+
+        <label for="">Precio</label>
+        <input type="number" class="inputCategoria" formControlName="precio" />
+
+        <label for="">Url de la Imagen</label>
+        <input
+          type="text"
+          class="inputCategoria inputImage"
+          formControlName="image"
+        />
+        <label for="">Categoria</label>
+        <select formControlName="categoria_id" style="height: 2rem; width: 35%">
+          <option value="0" disabled>Seleccione</option>
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.nombre }}
+          </option>
+        </select>
+
+        <label for="">Stock</label>
+        <input type="number" class="inputCategoria" formControlName="stock" />
+
+        <label for="">Descripcion</label>
+        <textarea
+          formControlName="descripcion"
+          name=""
+          class="inputCategoria"
+          id=""
+          cols="50"
+          rows="5"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="btn btn-custom"
+          style="width: 100%"
+          (click)="validateAddProducto()"
+        >
+          Agregar Producto
+        </button>
+
+        <br /><br />
+      </form>
+      <button class="modal-close-button" (click)="closeModal()">Cerrar</button>
+    </div>
   </div>
 </div>

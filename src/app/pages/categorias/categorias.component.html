@@ -1,61 +1,75 @@
-<div class="container mt-4" style="padding-left: 70px; padding-top: 50px;">
-  <button class="btn btn-custom" id="openModalBtn">Nueva Categoría</button>
-  <br/><br>
-  <div class="table-responsive">
-      <table id="myTable" class="table table-striped table-bordered display nowrap">
-          <thead class="bg-dark text-light">
-              <tr class="text-center">
-                  <th style="text-align: center;">Codigo</th>
-                  <th style="text-align: center;">Nombre Categoria</th>
-                  <th style="text-align: center;">Stock</th>
-                  <th style="text-align: center;">Acciones</th>
-              </tr>
-          </thead>
-          <tbody>
-          <tr>
-              <td>1001</td>
-              <td>Monitores</td>
-              <td>25</td>
-              <td>
-                  <button class="editBtn" id="openModalEdit"><i class="fa-solid fa-pencil"></i></button>
-                  <button class="deleteBtn"><i class="fas fa-trash-alt"></i></button>
-              </td>
-          </tr>
-      </tbody>
+<div class="container mt-4" style="padding-left: 70px; padding-top: 50px">
+  <form [formGroup]="categoriaForm">
+    <h4>Agregar Categoria</h4>
+
+    <input type="text" class="inputCategoria" formControlName="nombre" />
+
+    <button
+      type="submit"
+      class="btn btn-custom"
+      (click)="validateAddCategoria()"
+    >
+      Nueva Categoría
+    </button>
+
+    <br /><br />
+  </form>
+
+  <table id="myTable" class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let categoria of categorias">
+        <td>{{ categoria.nombre }}</td>
+        <td>
+          <button class="editBtn" (click)="openEditModal(categoria)">
+            <i class="fa-solid fa-pencil"></i>
+          </button>
+        </td>
+        <td>
+          <button class="deleteBtn" (click)="eliminarCategoria(categoria)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
-</div>
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModalBtn">&times;</span>
-    <h2 class="modal-title">Nueva Categoría</h2>
-    <form id="categoryForm">
-      <label for="codigo">Código:</label>
-      <input type="text" id="codigo" name="codigo">
-      <label for="nombre">Nombre de la Categoría:</label>
-      <input type="text" id="nombre" name="nombre">
-      <label for="stock">Stock:</label>
-      <input type="text" id="stock" name="stock">
-      <button type="button" id="agregarBtn">Agregar</button>
-    </form>
-  </div>
-</div>
+<div class="container mt-4" style="padding-left: 70px; padding-top: 50px">
+  <!-- Tu tabla aquí -->
 
-<!-- Modal actualizar -->
-<div id="editModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeEditModal">&times;</span>
-    <h2 class="modal-title">Editar Categoría</h2>
-    <form id="editCategoryForm">
-      <label for="editCodigo">Código:</label>
-      <input type="text" id="editCodigo" name="editCodigo">
-      <label for="editNombre">Nombre de la Categoría:</label>
-      <input type="text" id="editNombre" name="editNombre">
-      <label for="editStock">Stock:</label>
-      <input type="text" id="editStock" name="editStock">
-      <button type="button" id="EditModalBtn">Actualizar</button>
-    </form>
+  <!-- Modal EDITAR -->
+  <div class="custom-modal" [class.show-modal]="mostrarModal">
+    <div class="modal-content">
+      <h2>Editar Categoría</h2>
+      <form [formGroup]="editForm">
+        <input
+          readonly
+          type="text"
+          class="inputCategoria"
+          style="width: 30%"
+          id="inputCodigo"
+          formControlName="id"
+        />
+        <input type="text" class="inputCategoria" formControlName="nombre" />
+
+        <button
+          type="submit"
+          class="btn btn-custom"
+          (click)="validateEditCategoria()"
+        >
+          Editar Categoria
+        </button>
+
+        <br /><br />
+      </form>
+      <button class="modal-close-button" (click)="closeModal()">Cerrar</button>
+    </div>
   </div>
 </div>

@@ -15,4 +15,8 @@ export class SidebarComponent {
       this.isOpen = state;
     });
   }
+
+  cerrarSesion() {
+    localStorage.clear();
+  }
 }

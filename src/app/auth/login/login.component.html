@@ -1,16 +1,21 @@
 <div class="container">
-<div class="box">
-  <h2>CPU STORE</h2>
-  <form>
-    <div class="inputBox">
-      <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);" value="">
-      <label>Correo</label>
-    </div>
-    <div class="inputBox">
-      <input type="password" name="password">
-      <label>Contraseña</label>
-    </div>
-    <input type="submit" name="sign-in" value="Iniciar sesión">
-  </form>
-</div>
+  <div class="box">
+    <h2>CPU STORE</h2>
+    <form [formGroup]="loginForm">
+      <div class="inputBox">
+        <input type="email" name="email" formControlName="email" />
+        <label>Correo</label>
+      </div>
+      <div class="inputBox">
+        <input type="password" name="password" formControlName="password" />
+        <label>Contraseña</label>
+      </div>
+      <input
+        type="submit"
+        name="sign-in"
+        value="Iniciar sesión"
+        (click)="handleSubmit()"
+      />
+    </form>
+  </div>
 </div>

@@ -13,8 +13,8 @@
 
   <div class="card">
     <div>
-      <div class="numbers">80</div>
-      <div class="cardName">Sales</div>
+      <div class="numbers">{{ data?.categoria }}</div>
+      <div class="cardName">Categorias</div>
     </div>
 
     <div class="iconBx">
@@ -24,8 +24,8 @@
 
   <div class="card">
     <div>
-      <div class="numbers">284</div>
-      <div class="cardName">Comments</div>
+      <div class="numbers">{{ data?.producto }}</div>
+      <div class="cardName">Productos</div>
     </div>
 
     <div class="iconBx">
@@ -35,8 +35,8 @@
 
   <div class="card">
     <div>
-      <div class="numbers">$7,842</div>
-      <div class="cardName">Earning</div>
+      <div class="numbers">{{ data?.factura }}</div>
+      <div class="cardName">Ventas</div>
     </div>
 
     <div class="iconBx">
@@ -49,8 +49,8 @@
 <div class="details">
   <div class="recentOrders">
     <div class="cardHeader">
-      <h2>Recent Orders</h2>
-      <a href="#" class="btn">View All</a>
+      <h2>Ventas Recientes</h2>
+      <a routerLink="/ventas" class="btn"> Todas las Ventas</a>
     </div>
 
     <table>
@@ -126,7 +126,7 @@
   <!-- ================= New Customers ================ -->
   <div class="recentCustomers">
     <div class="cardHeader">
-      <h2>Recent Customers</h2>
+      <h2>Ultimos Clientes Registrados</h2>
     </div>
 
     <table>
