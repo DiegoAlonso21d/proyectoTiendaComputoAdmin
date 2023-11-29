@@ -1,61 +1,88 @@
-<div class="container mt-4" style="padding-left: 70px; padding-top: 50px;">
-  <button class="btn btn-custom" id="openModalBtn">Realizar Venta</button>
-  <br/><br>
-  <div class="table-responsive">
-      <table id="myTable" class="table table-striped table-bordered display nowrap">
-          <thead class="bg-dark text-light">
-              <tr class="text-center">
-                  <th style="text-align: center;">Codigo</th>
-                  <th style="text-align: center;">Total</th>
-                  <th style="text-align: center;">Usuario</th>
-                  <th style="text-align: center;">Acciones</th>
-              </tr>
-          </thead>
-          <tbody>
-          <tr>
-              <td>1001</td>
-              <td>S/400</td>
-              <td>Diego Armando</td>
-              <td>
-                  <button class="editBtn" id="openModalEdit"><i class="fa-solid fa-pencil"></i></button>
-                  <button class="deleteBtn"><i class="fas fa-trash-alt"></i></button>
-              </td>
-          </tr>
-      </tbody>
-  </table>
-</div>
-</div>
+<div class="container mt-4" style="padding-left: 70px; padding-top: 50px">
+  <form [formGroup]="manageOrderForm">
+    <!-- Datos del cliente -->
+    <div class="form-group">
+      <label for="nombre">Nombre del Cliente</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        formControlName="nombre"
+      />
+    </div>
 
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModalBtn">&times;</span>
-    <h2 class="modal-title">Realizar venta</h2>
-    <form id="categoryForm">
-      <label for="codigo">Código:</label>
-      <input type="text" id="codigo" name="codigo">
-      <label for="total">Total:</label>
-      <input type="text" id="total" name="total">
-      <label for="usuario">Usuario:</label>
-      <input type="text" id="usuario" name="usuario">
-      <button type="button" id="agregarBtn">Agregar</button>
-    </form>
-  </div>
-</div>
+    <div class="form-group">
+      <label for="nombre">Correo Electronico</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        formControlName="email"
+      />
+    </div>
 
-<!-- Modal actualizar -->
-<div id="editModal" class="modal2">
-  <div class="modal-content">
-    <span class="close" id="closeEditModal">&times;</span>
-    <h2 class="modal-title">Editar Venta</h2>
-    <form id="editCategoryForm">
-      <label for="editCodigo">Código:</label>
-      <input type="text" id="editCodigo" name="editCodigo">
-      <label for="totalEdit">Total:</label>
-      <input type="text" id="totalEdit" name="totalEdit">
-      <label for="usuarioEdit">Usuario:</label>
-      <input type="text" id="usuarioEdit" name="usuarioEdit">
-      <button type="button" id="EditModalBtn">Actualizar</button>
-    </form>
+    <div class="form-group">
+      <label for="nombre">Telefono Cliente:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        formControlName="telefono"
+      />
+    </div>
+
+    <!-- Datos de la factura -->
+    <div class="form-group mt-4">
+      <label for="metodoPago">Método de Pago</label>
+      <select
+        style="height: 2rem; width: 35%"
+        class="form-control"
+        id="metodoPago"
+        formControlName="metodoPago"
+      >
+        <option value="" disabled selected>Selecciona método de pago</option>
+        <option value="TARJETA">TARJETA</option>
+        <option value="EFECTIVO">EFECTIVO</option>
+        <option value="YAPE">YAPE</option>
+      </select>
+    </div>
+
+    <select
+      style="height: 2rem; width: 35%"
+      (change)="getProductoPorCategoria($event)"
+    >
+      <option value="0" disabled>Seleccione</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria.id">
+        {{ categoria.nombre }}
+      </option>
+    </select>
+
+    <select
+      style="height: 2rem; width: 35%"
+      (change)="getProductDetails($event)"
+      formControlName="productoSeleccionado"
+    >
+      <option value="0" disabled>Seleccione</option>
+      <option *ngFor="let producto of productos" [value]="producto.id">
+        {{ producto.nombre }}
+      </option>
+    </select>
+    <button (click)="addCarrito(productoSeleccionado)">Agregar Carrito</button>
+    <button (click)="validateSubmit()">Realizar Venta</button>
+  </form>
+
+  <div *ngIf="productosEnCarrito.length > 0">
+    <h2>Carrito de Compras</h2>
+    <ul>
+      <li
+        *ngFor="let producto of productosEnCarrito; let i = index"
+        style="margin-bottom: 1rem"
+      >
+        {{ producto.nombre }} - Cantidad: {{ producto.cantidad }} - Precio:
+        {{ producto.precio }}
+        <button (click)="quitarDelCarrito(i)">Quitar del Carrito</button>
+      </li>
+    </ul>
+    <p>Total: {{ totalAmount }}</p>
   </div>
 </div>

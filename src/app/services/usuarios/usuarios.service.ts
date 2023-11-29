@@ -40,6 +40,21 @@ export class UsuariosService {
     return this.httpClient.get(this.url + '/usuarios/checkToken');
   }
 
+  updateStatus(data: any) {
+    const token = localStorage.getItem('token')!;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.httpClient.post(this.url + '/usuarios/update', data, {
+      headers,
+    });
+  }
+
+  getUsuarios() {
+    const token = localStorage.getItem('token')!;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.httpClient.get(this.url + '/usuarios/get', { headers });
+  }
+
   changePassword(data: any) {
     const token = localStorage.getItem('token')!;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

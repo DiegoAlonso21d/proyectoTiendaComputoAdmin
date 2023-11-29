@@ -23,11 +23,11 @@ export class VentaService {
     const token = localStorage.getItem('token')!;
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
-      responseType: 'blob',
     });
 
     return this.httpClient.post(this.url + '/facturas/getPdf', data, {
       headers,
+      responseType: 'blob',
     });
   }
 
@@ -36,5 +36,14 @@ export class VentaService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.httpClient.get(this.url + '/facturas/getFacturas', { headers });
+  }
+
+  delete(id: any) {
+    const token = localStorage.getItem('token')!;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const data = {};
+    return this.httpClient.post(this.url + `/facturas/delete/ ${id}`, data, {
+      headers,
+    });
   }
 }

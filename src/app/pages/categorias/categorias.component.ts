@@ -80,7 +80,6 @@ export class CategoriasComponent {
       });
     });
   }
-
   tableData() {
     this.categoriaService.getCategorias().subscribe((response: any) => {
       console.log(response);
@@ -88,6 +87,7 @@ export class CategoriasComponent {
       this.initializeDataTable();
     });
   }
+
 
   validateAddCategoria() {
     if (!this.categoriaForm.valid) {

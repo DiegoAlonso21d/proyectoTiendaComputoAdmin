@@ -56,23 +56,20 @@ export class ProductosService {
     );
   }
 
-  getProductoPorCategoria(categoria: any) {
+  getProductoPorCategoria(id: any) {
     const token = localStorage.getItem('token')!;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.httpClient.get(
-      this.url + `productos/getByCategory/ ${categoria.id}`,
-      {
-        headers,
-      }
-    );
+    return this.httpClient.get(this.url + `/productos/getByCategory/${id}`, {
+      headers,
+    });
   }
 
-  getById(producto: any) {
+  getById(id: any) {
     const token = localStorage.getItem('token')!;
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.httpClient.get(this.url + `productos/getById/ ${producto.id}`, {
+    return this.httpClient.get(this.url + `/productos/getById/ ${id}`, {
       headers,
     });
   }
